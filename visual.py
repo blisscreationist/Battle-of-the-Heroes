@@ -65,7 +65,7 @@ class Game:
 
     def start(self):
         print("Игра началась!")
-        turn = 0  
+        turn = 0
         running = True
 
         while running:
