@@ -1,6 +1,4 @@
 import pygame
-import random
-
 
 class Hero:
     def __init__(self, name, health=100, attack_power=20):
@@ -11,6 +9,7 @@ class Hero:
     def attack(self, other):
         other.health -= self.attack_power
         print(f"{self.name} атакует {other.name} и наносит {self.attack_power} урона.")
+        print(f"Теперь у {other.name} здоровья: {other.health} HP.")
 
     def is_alive(self):
         return self.health > 0
@@ -18,12 +17,10 @@ class Hero:
     def __str__(self):
         return f"{self.name}: {self.health} HP"
 
-
 class Game:
     def __init__(self, player_name, computer_name="Компьютер"):
         self.player = Hero(player_name)
         self.computer = Hero(computer_name)
-
 
         pygame.init()
         self.screen = pygame.display.set_mode((800, 600))
@@ -51,23 +48,23 @@ class Game:
                     self.player.attack(self.computer)
                 else:
                     self.computer.attack(self.player)
-                turn = 1 - turn  
+                turn = 1 - turn
 
-            self.draw_text(str(self.player), 50, 50)
-            self.draw_text(str(self.computer), 50, 100)
+                self.draw_text(str(self.player), 50, 50)
+                self.draw_text(str(self.computer), 50, 100)
+                pygame.display.flip()
 
-            pygame.display.flip()
-            pygame.time.delay(1000)
-
-            if not self.player.is_alive() or not self.computer.is_alive():
+            else:
+                if self.player.is_alive():
+                    print(f"{self.player.name} победил!")
+                else:
+                    print(f"{self.computer.name} победил!")
                 running = False
 
-        if self.player.is_alive():
-            print(f"{self.player.name} победил!")
-        else:
-            print(f"{self.computer.name} победил!")
+            pygame.time.delay(1000)
 
         pygame.quit()
+
 
 if __name__ == "__main__":
     player_name = input("Введите имя вашего героя: ")
