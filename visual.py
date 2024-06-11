@@ -1,7 +1,7 @@
 import pygame
 import random
 
-# Класс героя
+
 class Hero:
     def __init__(self, name, image_path, x, y, health=100, attack_power=20):
         self.name = name
@@ -30,7 +30,7 @@ class Hero:
                 self.attack_animation = False
                 self.attack_count = 0
 
-        # Рисуем полоску здоровья
+
         health_bar_width = 100
         health_ratio = self.health / self.max_health
         pygame.draw.rect(screen, (255, 0, 0), (self.x, self.y - 20, health_bar_width, 10))
@@ -45,13 +45,13 @@ class Game:
         self.player = Hero(player_name, 'fox_1.png', 100, 300)
         self.computer = Hero(computer_name, 'mvSatyr.prev.png', 600, 300)
 
-        # Инициализация Pygame
+
         pygame.init()
         self.screen = pygame.display.set_mode((800, 600))
         pygame.display.set_caption("Битва героев")
         self.font = pygame.font.Font(None, 36)
 
-        # Кнопки
+
         self.attack_button = pygame.Rect(350, 500, 100, 50)
 
     def draw_text(self, text, x, y):
@@ -65,7 +65,7 @@ class Game:
 
     def start(self):
         print("Игра началась!")
-        turn = 0  # 0 - ход игрока, 1 - ход компьютера
+        turn = 0  
         running = True
 
         while running:
